@@ -289,11 +289,7 @@
         <a href="https://www.instagram.com/3quetzalcoalt.gam/" target="_blank">Instagram</a>
 
             
-            <p>Para aclaraciones, envía un correo electrónico a: <a href="mailto:iglesiaseduardo65@gmail.com">iglesiaseduardo65@gmail.com</a></p>
-        <p>Nuestra ubicacion</p>
-           <p>Estado: <span id="status"></span></p>
-           <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d235.0312766225448!2d-98.88576964261078!3d19.52011774512008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1691456664070!5m2!1ses-419!2smx" width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        
+            <p>Para aclaraciones, envía un correo electrónico a: <a href="mailto:iglesiaseduardo65@gmail.com">iglesiaseduardo65@gmail.com</a></p
         </article>
     </main>
     <footer>
@@ -322,73 +318,6 @@
             const subseccionSeleccionada = document.getElementById(subseccion);
             subseccionSeleccionada.style.display = 'block';
         }
-   function getDayAndTime() {
-        const now = new Date();
-        const day = now.toLocaleDateString('es-ES', { weekday: 'long' }).toLowerCase();
-        const time = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
-        return `${day}-${time}`;
-    }
-
-   
-    function checkOpenStatus() {
-        const openDaysAndHours = {
-            'lunes': ['cerrado', 'cerrado'],
-            'martes': ['cerrado', 'cerrado'],
-            'miércoles': ['cerrado', 'cerrado'],
-            'jueves': ['cerrado', 'cerrado'],
-            'viernes': ['cerrado', 'cerrado'],
-            'sábado': ['16:00', '18:30'],
-            'domingo': ['cerrado', 'cerrado'], // cerrado
-        };
-
-        const currentDayAndTime = getDayAndTime();
-        const currentDay = currentDayAndTime.split('-')[0];
-        const currentTime = currentDayAndTime.split('-')[1];
-
-        const openTime = openDaysAndHours[currentDay][0];
-        const closeTime = openDaysAndHours[currentDay][1];
-
-        const timeRemaining = getTimeRemaining(currentTime, closeTime);
-
-        if (currentTime >= openTime && currentTime <= closeTime) {
-            return `Abierto hoy (${currentDay})`;
-        } else if (timeRemaining !== null && timeRemaining <= 30) {
-            return `Cerrará pronto (${timeRemaining} min) hoy (${currentDay})`;
-        } else {
-            return `Cerrado hoy (${currentDay})`;
-        }
-    }
-
-    
-    function getTimeRemaining(currentTime, closeTime) {
-        if (closeTime === 'cerrado') {
-            return null;
-        }
-
-        const currentTimeInMinutes = convertTimeToMinutes(currentTime);
-        const closeTimeInMinutes = convertTimeToMinutes(closeTime);
-
-        if (closeTimeInMinutes >= currentTimeInMinutes) {
-            return closeTimeInMinutes - currentTimeInMinutes;
-        } else {
-           
-            return closeTimeInMinutes + (24 * 60) - currentTimeInMinutes;
-        }
-    }
-
-   
-    function convertTimeToMinutes(time) {
-        const [hours, minutes] = time.split(':').map(Number);
-        return hours * 60 + minutes;
-    }
-
-    
-    function displayOpenStatus() {
-        const statusElement = document.getElementById('status');
-        statusElement.textContent = checkOpenStatus();
-    }
-
-    displayOpenStatus();
     
     
     </script>
